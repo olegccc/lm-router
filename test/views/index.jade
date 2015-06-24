@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+    head
+        title Test Page
+    body(ng-controller="test")
+
+        #page-statistics(ng-bind="statistics")
+        #current-page
+        #page-properties
+
+        input#input(ng-model="newUrl")
+        input#button(type="button", ng-click="onNewUrl()")
+
+        script(type="text/javascript", src="/bower_components/angular/angular.js")
+        script(type="text/javascript", src="/release/lm-router.js")
+        script(type="text/javascript", src="/build/test/app/TestController.js")
+        script(type="text/javascript", src="/build/test/app/TestApp.js")

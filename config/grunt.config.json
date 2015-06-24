@@ -1,0 +1,82 @@
+{
+  "ts": {
+    "options": {
+      "fast": "never",
+      "target": "es3",
+      "declaration": false,
+      "comments": false,
+      "failOnTypeErrors": true,
+      "sourceMap": false,
+      "removeComments": false
+    },
+    "build": {
+      "out": "./build/lm-router.js",
+      "files": [
+        {
+          "src": [
+            "./src/**/*.ts",
+            "./typings/tsd.d.ts"
+          ]
+        }
+      ]
+    },
+    "tests": {
+      "outDir": "./build",
+      "files": [
+        {
+          "src": [
+            "./test/app/**/*.ts",
+            "./typings/tsd.d.ts"
+          ]
+        }
+      ]
+    }
+  },
+  "tsd": {
+    "default": {
+      "options": {
+        "command": "reinstall",
+        "latest": true,
+        "config": "./config/tsd.config.json"
+      }
+    }
+  },
+  "umd": {
+    "all": {
+      "options": {
+        "src": "./build/lm-router.js",
+        "dest": "./release/lm-router.js",
+        "deps": {
+          "default": ["angular"]
+        }
+      }
+    }
+  },
+  "uglify": {
+    "default": {
+      "files": {
+        "./release/lm-router.min.js": "./release/lm-router.js"
+      }
+    }
+  },
+  "connect": {
+    "options": {
+      "port": 9090,
+      "base": "."
+    },
+    "start": {
+    },
+    "keepalive": {
+      "options": {
+        "keepalive": true
+      }
+    }
+  },
+  "protractor": {
+    "options": {
+      "configFile": "./config/protractor.config.js"
+    },
+    "default": {
+    }
+  }
+}

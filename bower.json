@@ -1,0 +1,29 @@
+{
+  "name": "lm-router",
+  "main": "release/lm-router.js",
+  "version": "0.0.1",
+  "authors": [
+    "olegccc"
+  ],
+  "description": "Dynamic tree router for AngularJS",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "angularjs",
+    "router"
+  ],
+  "license": "MPL-2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "build",
+    "config",
+    "src",
+    "typings",
+    "Gruntfile.js",
+    ".baseDir.ts"
+  ]
+}
