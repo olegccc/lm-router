@@ -38,33 +38,27 @@ It can be implemented like this (using Express.js):
 
 Then the client can look like this:
 
-  var app = angular.module('app', ['lm-router']);
-
-  app.controller('main', ['$scope', '$compile', '$http', 'router', function($scope, $compile, $http, router) {
-
-      $scope.error = null;
-      $scope.body = "<span>Start page</span>";
-      $scope.click = function() {
-          router.navigate('/test/something');
-      };
-
-      router.on('(.*)', function(url) {
-          console.log('Our URL: ' + url);
-          $http.post('/router', {
-              url: url
-          }).success(function(response) {
-              if (response.valid) {
-                  $scope.error = null;
-                  $scope.body = $compile(response.template)(response.data);
-              } else {
-                  $scope.error = response.error;
-                  $scope.body = "";
-              }
+      var app = angular.module('app', ['lm-router']);
+      app.controller('main', ['$scope', '$compile', '$http', 'router', function($scope, $compile, $http, router) {
+          $scope.error = null;
+          $scope.body = "<span>Start page</span>";
+          $scope.click = function() {
+              router.navigate('/test/something');
+          };
+          router.on('(.*)', function(url) {
+              console.log('Our URL: ' + url);
+              $http.post('/router', {
+                  url: url
+              }).success(function(response) {
+                  if (response.valid) {
+                      $scope.error = null;
+                      $scope.body = $compile(response.template)(response.data);
+                  } else {
+                      $scope.error = response.error;
+                      $scope.body = "";
+                  }
+              });
           });
-      });
-
-      router.start();
-
-  }]);
-
-  angular.bootstrap(document, ['app']);
+        router.start();
+      }]);
+    angular.bootstrap(document, ['app']);
