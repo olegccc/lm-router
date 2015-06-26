@@ -12,7 +12,7 @@ Suppose we have a server backend which has the following interface: when client 
 - template to be displayed
 - data to be associated with the template
 
-It can be implemented like this (using Express.js):
+Then our server can be implemented like this (using Express.js):
 
 ```javascript
 var express = require('express');
@@ -42,7 +42,7 @@ app.post('/router', function(req, res) {
 app.listen(80);
 ```
 
-Then the client can look like this:
+And our client can look like this:
 
 ```javascript
 var app = angular.module('app', ['lm-router']);
