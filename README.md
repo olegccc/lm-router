@@ -14,51 +14,67 @@ Suppose we have a server backend which has the following interface: when client 
 
 It can be implemented like this (using Express.js):
 
-    var express = require('express');
-    var app = express();
-    app.use(express.bodyParser());
-    app.post('/router', function(req, res) {
-        var url = req.body.url;
-        if (url === '/test/something') {
-            res.send({
-                valid: true,
-                template: '<p>{{contents}}</p>',
-                data: {
-                    contents: 'abc'
-                }
-            })
-        } else {
-            res.send({
-                error: 'Unknown URL',
-                valid: false
-            });
-        }
-    });
-    app.listen(80);
+```javascript
+var express = require('express');
+var app = express();
+app.use(express.bodyParser());
+
+app.post('/router', function(req, res) {
+
+    var url = req.body.url;
+
+    if (url === '/test/something') {
+        res.send({
+            valid: true,
+            template: '<p>{{contents}}</p>',
+            data: {
+                contents: 'abc'
+            }
+        })
+    } else {
+        res.send({
+            error: 'Unknown URL',
+            valid: false
+        });
+    }
+});
+
+app.listen(80);
+```
 
 Then the client can look like this:
 
-    var app = angular.module('app', ['lm-router']);
-    app.controller('main', ['$scope', '$compile', '$http', 'router', function($scope, $compile, $http, router) {
-        $scope.error = null;
-        $scope.body = "<span>Start page</span>";
-        $scope.click = function() {
-            router.navigate('/test/something');
-        };
-        router.on('(.*)', function(url) {
-            console.log('Our URL: ' + url);
-            $http.post('/router', {
-                url: url
-            }).success(function(response) {
-                if (response.valid) {
-                    $scope.error = null;
-                    $scope.body = $compile(response.template)(response.data);
-                } else {
-                    $scope.error = response.error;
-                    $scope.body = "";
-                }
-            });
+```javascript
+var app = angular.module('app', ['lm-router']);
+
+app.controller('main', ['$scope', '$compile', '$http', 'router', function($scope, $compile, $http, router) {
+
+    $scope.error = null;
+    $scope.body = "<span>Start page</span>";
+
+    $scope.click = function() {
+        router.navigate('/test/something');
+    };
+    
+    router.on('(.*)', function(url) {
+    
+        console.log('Our URL: ' + url);
+    
+        $http.post('/router', {
+            url: url
+        }).success(function(response) {
+            if (response.valid) {
+                $scope.error = null;
+                $scope.body = $compile(response.template)(response.data);
+            } else {
+                $scope.error = response.error;
+                $scope.body = "";
+            }
         });
-        router.start();
-    }]);
-    angular.bootstrap(document, ['app']);
+    });
+    
+    router.start();
+}]);
+
+angular.bootstrap(document, ['app']);
+```
