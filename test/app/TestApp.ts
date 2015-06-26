@@ -8,6 +8,6 @@ appModule.config([
         routerServiceProvider.setRootPath('test');
     }]);
 
-angular.module('testApp').controller('test', ['$scope', 'router', TestController]);
+appModule.controller('test', ['$scope', 'router', TestController]);
 
 angular.bootstrap(document, ['testApp']);

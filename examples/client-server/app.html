@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client-server example</title>
+</head>
+<body ng-controller="main">
+
+    <a href="#" ng-click="click()">Click!</a>
+
+    <div ng-bind-html="body"></div>
+    <div ng-if="error">Error: {{error}}</div>
+
+    <script src="/bower_components/angular/angular.js" type="text/javascript"></script>
+    <script src="client.js" type="text/javascript"></script>
+</body>
+</html>
