@@ -38,8 +38,8 @@ It can be implemented like this (using Express.js):
 
 Then the client can look like this:
 
-      var app = angular.module('app', ['lm-router']);
-      app.controller('main', ['$scope', '$compile', '$http', 'router', function($scope, $compile, $http, router) {
+    var app = angular.module('app', ['lm-router']);
+    app.controller('main', ['$scope', '$compile', '$http', 'router', function($scope, $compile, $http, router) {
           $scope.error = null;
           $scope.body = "<span>Start page</span>";
           $scope.click = function() {
