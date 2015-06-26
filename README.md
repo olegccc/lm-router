@@ -47,7 +47,7 @@ And our client can look like this:
 ```javascript
 var app = angular.module('app', ['lm-router']);
 
-app.controller('main', ['$scope', '$compile', '$http', 'router', function($scope, $compile, $http, router) {
+app.controller('main', ['$scope', '$parse', '$http', 'router', function($scope, $parse, $http, router) {
 
     $scope.error = null;
     $scope.body = "<span>Start page</span>";
@@ -65,7 +65,7 @@ app.controller('main', ['$scope', '$compile', '$http', 'router', function($scope
         }).success(function(response) {
             if (response.valid) {
                 $scope.error = null;
-                $scope.body = $compile(response.template)(response.data);
+                $scope.body = $parse(response.template)(response.data);
             } else {
                 $scope.error = response.error;
                 $scope.body = "";
